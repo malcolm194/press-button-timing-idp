@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #5cb85c;
+            color: white;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Thank you for participating!</h1>
+    <p>Your task is to click on the "+ New Bookings" button as quickly as possible. You will be given two pages to complete this task.</p>
+    <button id="next-page-button">Next Page</button>
+</div>
+
+<script>
+    document.getElementById('next-page-button').addEventListener('click', function() {
+        window.location.href = 'instructionA.html'; // Redirect to instruction page for A
+    });
+</script>
+
+</body>
+</html>

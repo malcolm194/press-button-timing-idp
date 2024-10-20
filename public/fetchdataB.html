@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Bookings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #ddd;
+            padding: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .booking {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .booking h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .details {
+            margin: 5px 0;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .hire-button {
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .new-booking {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .new-booking button {
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .edit-icon {
+            cursor: pointer;
+            margin-left: 10px;
+            font-size: 16px;
+        }
+
+        #time-taken {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Booking</h1>
+    </header>
+
+    <div class="container">
+        <h2>Manage Bookings</h2>
+
+        <div class="booking">
+            <div class="details">
+                <span>📍 Geylang Lorong 18</span>
+                <span class="edit-icon">✏️</span>
+            </div>
+            <div class="details">18 / 09 / 2024</div>
+            <div class="details">0800 - 0900 | Machine A</div>
+            <button class="hire-button">Hire?</button>
+        </div>
+
+        <div class="booking">
+            <div class="details">
+                <span>📍 Toa Payoh Block 55</span>
+                <span class="edit-icon">✏️</span>
+            </div>
+            <div class="details">20 / 09 / 2024</div>
+            <div class="details">1800 - 1900 | Machine C</div>
+            <button class="hire-button">Hire?</button>
+        </div>
+
+        <!-- Blank section with the same height as the other bookings -->
+        <div class="booking" style="height: 110px;">
+            <!-- No content, just blank space -->
+        </div>
+
+        <!-- Blank section with the same height as the other bookings -->
+        <div class="booking" style="height: 110px;">
+            <!-- No content, just blank space -->
+        </div>
+
+        <div class="new-booking">
+            <button id="new-booking-button">+ New Bookings</button>
+        </div>
+
+        <div id="time-taken"></div>
+    </div>
+
+    <script>
+        // // Record the start time with millisecond precision
+        // const startTime = performance.now();
+
+        // // Function to handle new booking button click
+        // document.getElementById('new-booking-button').addEventListener('click', function () {
+        //     // Get the end time with millisecond precision
+        //     const endTime = performance.now();
+
+        //     // Calculate the time taken in seconds
+        //     const timeTaken = ((endTime - startTime) / 1000).toFixed(2);
+
+        //     // Display the time taken
+        //     document.getElementById('time-taken').textContent = `Time taken: ${timeTaken} seconds`;
+
+        //     // Navigate to the next page
+        //     console.log('New Booking button clicked'); // Debugging step
+        //     window.location.href = 'thankyou.html';
+        // });
+        // Record the start time with millisecond precision
+const startTime = performance.now();
+
+// Function to handle new booking button click
+document.getElementById('new-booking-button').addEventListener('click', function () {
+    // Get the end time with millisecond precision
+    const endTime = performance.now();
+    // Calculate the time taken in seconds
+    const timeTaken = ((endTime - startTime) / 1000).toFixed(2);
+    // Display the time taken
+    document.getElementById('time-taken').textContent = `Time taken: ${timeTaken} seconds`;
+    // Send timing data to server
+    fetch('/save-timing', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            userId: 'someUserId',
+            design: 'B',
+            timeTaken: timeTaken
+        })
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+    // Navigate to the next page
+    window.location.href = 'thankyou.html';
+});
+
+    </script>
+
+</body>
+
+</html>
+
+

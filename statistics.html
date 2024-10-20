@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!-- <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Statistics</h1>
+    <div class="results" id="results"></div>
+     Clear Data Button
+     <button id="clear-data-button">Clear Data</button>
+</div>
+
+<script>
+    const userId = 'someUserId'; // Replace this with actual user ID if available
+
+    fetch('/statistics')
+        .then(response => response.json())
+        .then(data => {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <h2>Overall Statistics</h2>
+                <p>Mean A: ${data.meanA} seconds</p>
+                <p>Mean B: ${data.meanB} seconds</p>
+                <p>Median A: ${data.medianA} seconds</p>
+                <p>Median B: ${data.medianB} seconds</p>
+                <p>Variance A: ${data.varianceA} seconds²</p>
+                <p>Variance B: ${data.varianceB} seconds²</p>
+
+                <h2>Individual Results</h2>
+                <ul id="individual-results"></ul>
+            `;
+
+            const individualResultsDiv = document.getElementById('individual-results');
+
+            fetch(`/get-user-timing?userId=${userId}`)
+                .then(response => response.json())
+                .then(userData => {
+                    const listItemA = document.createElement('li');
+                    listItemA.textContent = `Design A Time: ${userData.timeA} seconds`;
+                    individualResultsDiv.appendChild(listItemA);
+
+                    const listItemB = document.createElement('li');
+                    listItemB.textContent = `Design B Time: ${userData.timeB} seconds`;
+                    individualResultsDiv.appendChild(listItemB);
+                })
+                .catch(error => {
+                    console.error('Error fetching user timing:', error);
+                });
+        })
+        .catch(error => {
+            console.error('Error fetching statistics:', error);
+        });
+
+    // Clear Data Button functionality
+    document.getElementById('clear-data-button').addEventListener('click', function() {
+        fetch('/clear-data', { -->
+            <!-- method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message); // Notify user
+            // Optionally, refresh the statistics after clearing
+            location.reload();
+        })
+        .catch(error => {
+            console.error('Error clearing data:', error);
+        });
+    }); // <-- Missing closing bracket added here
+</script>
+
+</body>
+</html> --> 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .results {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Statistics</h1>
+    <div class="results" id="results"></div>
+    <!-- Clear Data Button -->
+    <button id="clear-data-button">Clear Data</button>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const userId = 'someUserId'; // Replace this with actual user ID if available
+        fetch('/statistics')
+            .then(response => response.json())
+            .then(data => {
+                const resultsDiv = document.getElementById('results');
+                resultsDiv.innerHTML = `
+                    <h2>Overall Statistics</h2>
+                    <p>Mean A: ${data.meanA} seconds</p>
+                    <p>Mean B: ${data.meanB} seconds</p>
+                    <p>Median A: ${data.medianA} seconds</p>
+                    <p>Median B: ${data.medianB} seconds</p>
+                    <p>Variance A: ${data.varianceA} seconds²</p>
+                    <p>Variance B: ${data.varianceB} seconds²</p>
+                    <h2>Individual Results</h2>
+                    <ul id="individual-results"></ul>
+                `;
+                const individualResultsDiv = document.getElementById('individual-results');
+                fetch(`/get-user-timing?userId=${userId}`)
+                    .then(response => response.json())
+                    .then(userData => {
+                        const listItemA = document.createElement('li');
+                        listItemA.textContent = `Design A Time: ${userData.timeA} seconds`;
+                        individualResultsDiv.appendChild(listItemA);
+                        const listItemB = document.createElement('li');
+                        listItemB.textContent = `Design B Time: ${userData.timeB} seconds`;
+                        individualResultsDiv.appendChild(listItemB);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching user timing:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Error fetching statistics:', error);
+            });
+
+        // Clear Data Button functionality
+        document.getElementById('clear-data-button').addEventListener('click', function() {
+            fetch('/clear-data', {
+                method: 'DELETE'
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert(data.message); // Notify user
+                // Optionally, refresh the statistics after clearing
+                location.reload();
+            })
+            .catch(error => {
+                console.error('Error clearing data:', error);
+            });
+        });
+    });
+</script>
+</body>
+</html>

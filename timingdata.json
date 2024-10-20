@@ -1,0 +1,22 @@
+[
+  {
+    "userId": "someUserId",
+    "design": "A",
+    "timeTaken": 2
+  },
+  {
+    "userId": "someUserId",
+    "design": "B",
+    "timeTaken": 2.94
+  },
+  {
+    "userId": "someUserId",
+    "design": "A",
+    "timeTaken": 1.08
+  },
+  {
+    "userId": "someUserId",
+    "design": "B",
+    "timeTaken": 2.63
+  }
+]
